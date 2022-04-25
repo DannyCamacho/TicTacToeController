@@ -1,7 +1,6 @@
 package com.tictactoe.tictactoecontroller;
 
 import com.tictactoe.message.*;
-import java.util.Objects;
 
 public class GameController {
     private String gameName;
@@ -17,10 +16,6 @@ public class GameController {
         return !(boardState[0] == 0) && !(boardState[1] == 0) && !(boardState[2] == 0) &&
                 !(boardState[3] == 0) && !(boardState[4] == 0) && !(boardState[5] == 0) &&
                 !(boardState[6] == 0) && !(boardState[7] == 0) && !(boardState[8] == 0);
-    }
-
-    public boolean isGameOver() {
-        return !Objects.equals(checkIfGameOver(), "N");
     }
 
     public String checkIfGameOver() {
@@ -52,7 +47,9 @@ public class GameController {
         move = playerMoveSend.move();
         boardState = playerMoveSend.boardState();
         boardState[move] = playerToken;
+        String result = checkIfGameOver();
+        char nextPlayer = changePlayer();
 
-        return new PlayerMoveResult(gameName, changePlayer(), move, checkIfGameOver());
+        return new PlayerMoveResult(gameName, nextPlayer, move, result);
     }
 }
