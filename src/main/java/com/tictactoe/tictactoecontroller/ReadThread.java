@@ -8,8 +8,8 @@ import java.util.Arrays;
 public class ReadThread extends Thread {
     private ObjectOutputStream output;
     private ObjectInputStream input;
-    private ControllerClient client;
-    private GameController gameController;
+    private final ControllerClient client;
+    private final GameController gameController;
 
     public ReadThread(Socket socket, ControllerClient client) {
         this.client = client;
@@ -17,7 +17,7 @@ public class ReadThread extends Thread {
         try {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            output.writeObject(new GameControllerConnection("Game Controller", true));
+            output.writeObject(new ServerConnection("Controller", "Game Controller", true));
             output.flush();
         } catch (IOException ex) {
             client.print("\nError getting input stream: " + ex.getMessage() + "\n");
@@ -32,9 +32,9 @@ public class ReadThread extends Thread {
                              " Move: " + move.move() +
                              " Token: " + move.playerToken() +
                              " Board: " + Arrays.toString(move.boardState()));
-
                 PlayerMoveResult result = gameController.moveResult(move);
                 client.print("\nGame: " + result.GameName() +
+                             " Move: " + result.move() +
                              " New Token: " + result.playerToken() +
                              " Result: " + result.result());
                 output.writeObject(result);

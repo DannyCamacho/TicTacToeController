@@ -3,10 +3,8 @@ package com.tictactoe.tictactoecontroller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 
 public class TicTacToeController {
-    private ControllerClient server;
     @FXML
     public Button startButton;
     @FXML
@@ -16,8 +14,8 @@ public class TicTacToeController {
         ta.appendText(message);
     }
 
-    public void onStartClicked(MouseEvent mouseEvent) {
-        server = new ControllerClient("localhost",8000, this);
+    public void onStartClicked() {
+        ControllerClient server = new ControllerClient("localhost", 8000, this);
         server.execute();
         startButton.setVisible(false);
     }

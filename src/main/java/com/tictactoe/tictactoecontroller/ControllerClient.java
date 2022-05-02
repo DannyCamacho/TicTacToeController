@@ -5,21 +5,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ControllerClient {
-    private final String hostname;
-    private final int port;
-    private final TicTacToeController controller;
-
-    public ControllerClient(String hostname, int port, TicTacToeController controller) {
-        this.hostname = hostname;
-        this.port = port;
-        this.controller = controller;
-    }
-
+public record ControllerClient(String hostname, int port, TicTacToeController controller) {
     public void execute() {
         try {
             Socket socket = new Socket(hostname, port);
-            print("Connected to the TestServer");
+            print("Connected to the Tic-Tac-Toe Server");
             new ReadThread(socket, this).start();
         } catch (UnknownHostException ex) {
             print("Server not found: " + ex.getMessage());
