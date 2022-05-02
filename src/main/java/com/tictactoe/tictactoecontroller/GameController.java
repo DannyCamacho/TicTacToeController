@@ -37,7 +37,7 @@ public class GameController {
     }
 
     public PlayerMoveResult moveResult(PlayerMoveSend playerMoveSend) {
-        String gameName = playerMoveSend.GameName();
+        String gameName = playerMoveSend.gameName();
         char playerToken = playerMoveSend.playerToken();
         int move = playerMoveSend.move();
         char [] boardState = playerMoveSend.boardState();
@@ -46,6 +46,6 @@ public class GameController {
         String result = checkIfGameOver(boardState);
         char nextPlayer = changePlayer(playerToken);
 
-        return new PlayerMoveResult(gameName, nextPlayer, move, result);
+        return new PlayerMoveResult(gameName, nextPlayer, move, result, boardState);
     }
 }
