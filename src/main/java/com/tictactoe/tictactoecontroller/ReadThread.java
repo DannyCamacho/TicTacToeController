@@ -34,7 +34,6 @@ public class ReadThread extends Thread {
                              " Board: " + Arrays.toString(move.boardState()));
                 PlayerMoveResult result = gameController.moveResult(move);
                 client.print("\nGame: " + result.gameName() +
-                             " Move: " + result.move() +
                              " New Token: " + result.playerToken() +
                              " Result: " + result.result());
                 output.writeObject(result);

@@ -37,15 +37,9 @@ public class GameController {
     }
 
     public PlayerMoveResult moveResult(PlayerMoveSend playerMoveSend) {
-        String gameName = playerMoveSend.gameName();
-        char playerToken = playerMoveSend.playerToken();
-        int move = playerMoveSend.move();
         char [] boardState = playerMoveSend.boardState();
+        boardState[playerMoveSend.move()] = playerMoveSend.playerToken();
 
-        boardState[move] = playerToken;
-        String result = checkIfGameOver(boardState);
-        char nextPlayer = changePlayer(playerToken);
-
-        return new PlayerMoveResult(gameName, nextPlayer, move, result, boardState);
+        return new PlayerMoveResult(playerMoveSend.gameName(), changePlayer(playerMoveSend.playerToken()), checkIfGameOver(boardState), boardState);
     }
 }
