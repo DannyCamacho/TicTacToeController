@@ -28,14 +28,12 @@ public class ReadThread extends Thread {
         while (true) {
             try {
                 PlayerMoveSend move = (PlayerMoveSend)input.readObject();
-                client.print("\nGame: " + move.gameName() +
-                             " Move: " + move.move() +
-                             " Token: " + move.playerToken() +
-                             " Board: " + Arrays.toString(move.boardState()));
                 PlayerMoveResult result = gameController.moveResult(move);
-                client.print("\nGame: " + result.gameName() +
-                             " New Token: " + result.playerToken() +
-                             " Result: " + result.result());
+                client.print("\nGame [" + move.gameName() +
+                             "] Move [" + move.move() +
+                             "] Token [" + move.playerToken() +
+                             "] Board " + Arrays.toString(move.boardState()) +
+                             " Result [" + result.result() + "]");
                 output.writeObject(result);
                 output.flush();
             } catch (IOException | ClassNotFoundException ex) {
