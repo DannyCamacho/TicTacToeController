@@ -17,7 +17,7 @@ public class ReadThread extends Thread {
         try {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            output.writeObject(new ServerConnection("Controller", "Game Controller", true));
+            output.writeObject(new ServerConnection("Controller", "Controller", true));
             output.flush();
         } catch (IOException ex) {
             client.print("\nError getting input stream: " + ex.getMessage() + "\n");
