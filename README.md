@@ -1,6 +1,8 @@
 # Tic-Tac-Toe Online Game Controller
 Java application that connects to a main Tic-Tac-Toe Online server and processes game moves between players within a game lobby, used to determine win/draw/ongoing game conditions.
 
+Tic-Tac-Toe Online Server: https://github.com/DannyCamacho/TicTacToeServer
+
 ## Launch Window
 ![image](https://github.com/DannyCamacho/TicTacToeController/assets/91514165/76321895-404b-43cc-8882-663723fdc752)
 
